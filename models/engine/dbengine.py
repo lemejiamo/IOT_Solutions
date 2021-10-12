@@ -3,11 +3,11 @@
 
 from models.base_model import IOT_Model, Base
 from models.companies import Company
-#from models.users import User
-#from models.devices import Device
-#from models.locations import Location
-#from models.records_humidity import Record_HUMIDITY
-#from models.records_temp import Record_TEMP
+from models.users import User
+from models.devices import Device
+from models.campus import Campus
+from models.records_humidity import Record_HUMIDITY
+from models.records_temp import Record_TEMP
 import sqlalchemy
 from sqlalchemy import Column, String, create_engine
 from sqlalchemy.ext.declarative import declarative_base
@@ -37,7 +37,7 @@ class DbEngine():
     __session = ""
 
     def __init__(self):
-        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
+        self.__engine = create_engine('mysql+mysqlconnector://{}:{}@{}/{}'.
                                       format(MYSQL_USER,
                                              MYSQL_PASS,
                                              MYSQL_HOST,
@@ -46,14 +46,15 @@ class DbEngine():
 
 
     def save(self, obj):
-        print(type(obj))
-        print(type(self.__engine))
         self.__session.add(obj)
         self.__session.commit()
-        print(type(self.__session))
 
     def reload(self):
         Base.metadata.create_all(self.__engine)
         sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(sess_factory)
         self.__session = Session
+
+    def close(self):
+        """call remove() method on the private session attribute"""
+        self.__session.remove()

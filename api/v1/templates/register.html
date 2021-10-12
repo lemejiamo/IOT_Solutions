@@ -1,0 +1,16 @@
+{% block title %}Registro de usuarios{% endblock %}
+{% block content %}
+    <form action="" method="post">
+        <label for="name">Nombre: </label>
+        <input type="text" id="name" name="name" /><br>
+				<label for="user_email">Email: </label>
+        <input type="text" id="user_email" name="user_email" /><br>
+				<label for="password">Contraseña: </label>
+        <input type="password" id="password" name="password" /><br>
+				<label for="telephone">Telephone: </label>
+        <input type="text" id="telephone" name="telephone" /><br>
+				<label for="company_id">NIT: </label>
+        <input type="text" id="company_id" name="company_id" /><br>
+				<input type="submit" id="send-signup" name="signup" value="Registrar" />
+    </form>
+{% endblock %}
