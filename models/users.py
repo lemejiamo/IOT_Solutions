@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """ holds class User"""
 
-import models
 from models.base_model import IOT_Model, Base
 import sqlalchemy
 from sqlalchemy import Column, String, ForeignKey, Integer, Boolean
@@ -18,7 +17,7 @@ class User(IOT_Model, Base):
     user_email = Column(String(128), nullable=False)
     password = Column(String(128), nullable=False)
     telephone = Column(Integer, nullable=False)
-    #rol = Column(Boolean, default=False)
+    rol = Column(Boolean, default=0)
 
     def __init__(self, **kwargs):
         """initializes user"""

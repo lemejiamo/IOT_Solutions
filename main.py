@@ -1,7 +1,6 @@
 #!/usr/bin/python3
+"""main to test basic work from models module"""
 
-import models
-from models.base_model import IOT_Model
 from models.devices import Device
 from models.users import User
 from models.companies import Company
@@ -32,26 +31,30 @@ campus = {'campus_id': '1',
           'name': 'Bog_centro'
         }
 
+# diccionario para testear el device
 device = {'campus_id': '1',
           'area': 'Cocina_principal',
           'location': 'nevera_1'
         }
 
 
-#company = Company(**company_data)
-#company.save()
 
-#campus = Campus(**campus)
-#campus.save()
+# creacion de los models base
+company = Company(**company_data)
+company.save()
+
+campus = Campus(**campus)
+campus.save()
 
 
-#user = User(**data)
-#user.save()
+user = User(**data)
+user.save()
 
 device = Device(**device)
 device.save()
 
-#print (user.__dict__)
-#print (company.__dict__)
-#print (campus.__dict__)
+# print de la representacion en dicionario de las instancias
+print (user.__dict__)
+print (company.__dict__)
+print (campus.__dict__)
 print (device.__dict__)
