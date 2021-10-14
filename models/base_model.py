@@ -14,7 +14,7 @@ import uuid
 
 Base = declarative_base()
 
-DATA_MODELS = {
+CLASS_MODELS = {
     'Company': ['uuid_id', 'created_at', 'NIT', 'name', 'telephone', 'email', 'address'],
     'User': ['uuid_id', 'created_at', 'user_id', 'user_email', 'password', 'company_id', 'campus_id', 'telephone'],  #  rol es un booleano, en caso de verdadero es gerente en caso de falgo es usuario estandar campus_id foreging key from campus
     'Campus': ['uuid_id', 'created_at', 'campus_id', 'company_id', 'name'], #  company foreging key from companies restaurante 1
@@ -35,8 +35,8 @@ class IOT_Model:
 
         __class = self.__class__.__name__
         print (__class)
-        if __class in DATA_MODELS:
-            attributes = DATA_MODELS[__class]
+        if __class in CLASS_MODELS:
+            attributes = CLASS_MODELS[__class]
             for key, value  in kwargs.items():
                 if key in attributes:
                     setattr(self, key, value)
