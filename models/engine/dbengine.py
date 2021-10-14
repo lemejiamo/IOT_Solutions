@@ -12,6 +12,7 @@ import sqlalchemy
 from sqlalchemy import Column, String, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker
+from sqlalchemy.sql import text
 
 MYSQL_USER = 'IOT_DEV'
 MYSQL_PASS = 'IOTDEV'
@@ -31,30 +32,70 @@ class DbEngine():
         NEW             --  add the object to the current database session
         SAVE            --  commit all changes of the current database session
         RELOAD          --  reload data from database
+        CLOSE           --  call remove() method on the private session attribute
+        __init_session  --  initialize a new session for the transaction
+        close_session   --  finalize the current_session
+        get_objects     --  Return a list of all objects in DB from given class
+
     """
 
     __engine = ""
     __session = ""
 
     def __init__(self):
+        """
+        Init connection with the database
+        """
         self.__engine = create_engine('mysql+mysqlconnector://{}:{}@{}/{}'.
                                       format(MYSQL_USER,
                                              MYSQL_PASS,
                                              MYSQL_HOST,
                                              MYSQL_DBASE))
 
+    def init_session(self):
 
-
-    def save(self, obj):
-        self.__session.add(obj)
-        self.__session.commit()
+        Session_factory = sessionmaker(self.__engine)
+        session = scoped_session(Session_factory)
+        self.__session = session
 
     def reload(self):
         Base.metadata.create_all(self.__engine)
-        sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
-        Session = scoped_session(sess_factory)
-        self.__session = Session
 
-    def close(self):
-        """call remove() method on the private session attribute"""
+    def save(self, obj):
+        self.init_session()
+        try:
+            self.__session.add(obj)
+            self.__session.commit()
+        finally:
+            self.close_session()
+
+    def close_session(self):
         self.__session.remove()
+
+    def get_objects(self, cls=None, **kwargs):
+        from models.base_model import CLASS_MODELS
+        self.init_session()
+        obj_dict = {}
+        if cls in CLASS_MODELS:
+            if cls == 'User':
+                objects = self.__session.query(User).all()
+            if cls == 'Company':
+                objects = self.__session.query(Company).all()
+            if cls == 'Device':
+                objects = self.__session.query(Device).all()
+            if cls == 'Campus':
+                objects = self.__session.query(Campus).all()
+            if cls == 'Record_TEMP':
+                objects = self.__session.query(Record_TEMP).all()
+            if cls == 'Record_HUMIDITY':
+                objects = self.__session.query(Record_HUMIDITY).all()
+
+        else:
+            self.close_session()
+            return
+
+        for obj in objects:
+            key = obj.__class__.__name__ + '.' + obj.uuid_id
+            obj_dict[key] = obj
+        self.close_session()
+        return (obj_dict)
