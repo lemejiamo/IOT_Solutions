@@ -72,7 +72,7 @@ class DbEngine():
     def close_session(self):
         self.__session.remove()
 
-    def get_objects(self, cls=None, **kwargs):
+    def get_objects(self, cls=None):
         from models.base_model import CLASS_MODELS
         self.init_session()
         obj_dict = {}
