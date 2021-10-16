@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Module to mannage RECORDS views  """
+"""Module to mannage RECORDS endpoints """
 
 
 from flask import request, make_response, jsonify, render_template, flash
