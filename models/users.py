@@ -14,12 +14,12 @@ class User(IOT_Model, Base, UserMixin):
     """Representation of a user """
 
     __tablename__ = 'users'
-    user_id = Column(Integer, primary_key=True)
-    company_id = Column(Integer, ForeignKey('companies.NIT'), nullable=False)
-    campus_id = Column(Integer, ForeignKey('campus.campus_id'), nullable=False)
+    id = Column(String(128), primary_key=True)
+    company_id = Column(String(128), ForeignKey('companies.NIT'), nullable=False)
+    campus_id = Column(String(128), ForeignKey('campus.id'), nullable=False)
     user_email = Column(String(128), nullable=False)
     password = Column(String(128), nullable=False)
-    telephone = Column(Integer, nullable=False)
+    telephone = Column(String(128), nullable=False)
     rol = Column(Boolean, default=0)
 
     def __init__(self, **kwargs):

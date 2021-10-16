@@ -78,6 +78,7 @@ class DbEngine():
         obj_dict = {}
         if cls in CLASS_MODELS:
             if cls == 'User':
+                # objects = eval("self.__session.query({}).all()".format(cls))
                 objects = self.__session.query(User).all()
             if cls == 'Company':
                 objects = self.__session.query(Company).all()
@@ -99,3 +100,12 @@ class DbEngine():
             obj_dict[key] = obj
         self.close_session()
         return (obj_dict)
+
+    def get_one(self, cls, id):
+        all_obj = self.get_objects(cls)
+        print("\n\n ALL_OBJ:",all_obj,"\n\n")
+        # key = cls + "." + id
+        for key, obj in all_obj.items():
+            if obj.id == id:
+                return obj
+        return None

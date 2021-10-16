@@ -12,12 +12,12 @@ class Campus(IOT_Model, Base):
     """Representation of a campus """
 
     __tablename__ = 'campus'
-    campus_id = Column(Integer, primary_key=True, unique=True)
-    company_id = Column(Integer, ForeignKey('companies.NIT'), nullable=False)
+    id = Column(String(128), primary_key=True, unique=True)
+    company_id = Column(String(128), ForeignKey('companies.NIT'), nullable=False)
     name = Column(String(128), nullable=False)
     users = relationship("User",
                          backref='campus')
-    users = relationship("Device",
+    devices = relationship("Device",
                          backref='campus')
 
 
