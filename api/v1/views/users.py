@@ -14,16 +14,17 @@ def new_user():
 
     if request.method == 'POST':
         print("\n\n\n",request.form,"\n\n\n")
-
         data = request.form
-        print("\n\n\n",data,"\n\n\n")
+        role = data.get('role')
         user_email = data.get('user_email')
         password = data.get('password')
         password2 = data.get('password2')
         telephone = data.get('telephone')
         campus_id = data.get("campus_id")
         company_id = data.get("company_id")
-        if len(user_email) < 3 or User.get_user(user_email) is not None:
+        if role not in ['1', '0']:
+            flash('Invalid Role!', category="error")
+        elif len(user_email) < 3 or User.get_user(user_email) is not None:
             flash('email too short or the email already exists!', category="error")
         elif password != password2 :
             flash('email doesn\'t match!', category="error")
@@ -37,9 +38,10 @@ def new_user():
             flash('Campus id doesn\'t exists!', category="error")
         else:
             new_user = User(**request.form)
-            print(new_user)
             new_user.save()
-            return make_response(jsonify({'in progres': 'in progres'}), 201)
+            flash('New user acount created!', category="succes")
+            return render_template("register.html")
+            # make_response(jsonify({'in progres': 'in progres'}), 201)
         return render_template("register.html")
 
 @app_views.route('/login', methods=['POST', 'GET'])
