@@ -2,6 +2,7 @@
 """main to test basic work from models module"""
 
 from models.devices import Device
+from models.locations import Location
 from models.users import User
 from models.companies import Company
 from models.campus import Campus
@@ -34,10 +35,13 @@ campus = {'id': '1',
           'name': 'Bog_centro'
         }
 
+location = {'id': '5497',
+            'name': 'Cocina_principal'
+        }
 # diccionario para testear el device
 device = {'campus_id': '1',
-          'area': 'Cocina_principal',
-          'location': 'nevera_1'
+          'location': '5497',
+          'machine': 'nevera_1'
         }
 
 
@@ -52,6 +56,9 @@ campus.save()
 
 user = User(**data)
 user.save()
+
+location = Location(**location)
+location.save()
 
 device = Device(**device)
 device.save()

@@ -8,6 +8,7 @@ from models.devices import Device
 from models.campus import Campus
 from models.records_humidity import Record_HUMIDITY
 from models.records_temp import Record_TEMP
+from models.locations import Location
 import sqlalchemy
 from sqlalchemy import Column, String, create_engine
 from sqlalchemy.ext.declarative import declarative_base
@@ -106,6 +107,9 @@ class DbEngine():
         print("\n\n ALL_OBJ:",all_obj,"\n\n")
         # key = cls + "." + id
         for key, obj in all_obj.items():
+            print('este es el db tipe')
+            print(type(obj.id))
+            print(obj.id)
             if obj.id == id:
                 return obj
         return None

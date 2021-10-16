@@ -12,7 +12,7 @@ from sqlalchemy.orm import relationship
 class Record_HUMIDITY(IOT_Model, Base):
     """Representation of a user """
     __tablename__ = 'records_HUMIDITY'
-    id = Column(String(128), primary_key=True, unique=True)
+    id = Column(Integer, primary_key=True, unique=True, autoincrement=True, default=1)
     device_id = Column(Integer, ForeignKey('devices.id'), nullable=False)
     measure = Column(Float, nullable=False)
     date = Column(DateTime, nullable=True)
