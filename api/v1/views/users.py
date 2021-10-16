@@ -1,21 +1,48 @@
  #!/usr/bin/python3
 
-from flask import request, make_response, jsonify, render_template
+from hashlib import new
+from flask import request, make_response, jsonify, render_template, flash
 from api.v1.views import app_views
 from models.users import User
 from api.v1.app import load_user
+from models import storage
 
-@app_views.route('/users/register', methods=['POST', 'GET'])
+@app_views.route('/sign-up', methods=['POST', 'GET'])
 def new_user():
     if request.method == 'GET':
         return render_template("register.html")
 
     if request.method == 'POST':
-        new_user = User(**request.form)
-        new_user.save()
-        return make_response(jsonify({'in progres': 'in progres'}), 201)
+        print("\n\n\n",request.form,"\n\n\n")
 
-@app_views.route('/users/login', methods=['POST', 'GET'])
+        data = request.form
+        print("\n\n\n",data,"\n\n\n")
+        user_email = data.get('user_email')
+        password = data.get('password')
+        password2 = data.get('password2')
+        telephone = data.get('telephone')
+        campus_id = data.get("campus_id")
+        company_id = data.get("company_id")
+        if len(user_email) < 3 or User.get_user(user_email) is not None:
+            flash('email too short or the email already exists!', category="error")
+        elif password != password2 :
+            flash('email doesn\'t match!', category="error")
+        elif len(password) < 4:
+            flash('password too short!', category="error")
+        elif len(telephone) < 10:
+            flash('Telephone number too short!', category="error")
+        elif storage.get_one("Company", company_id) is None:
+            flash('Company NIT/id doesn\'t exists!', category="error")
+        elif storage.get_one("Campus", campus_id) is None:
+            flash('Campus id doesn\'t exists!', category="error")
+        else:
+            new_user = User(**request.form)
+            print(new_user)
+            new_user.save()
+            return make_response(jsonify({'in progres': 'in progres'}), 201)
+        return render_template("register.html")
+
+@app_views.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'GET':
         return render_template("login.html")

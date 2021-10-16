@@ -44,6 +44,11 @@ def resource_not_found(e): #  Talk About it with the peers
     return make_response(jsonify(msg), 404)
 
 
+@app.route("/")
+def home():
+    """Home view"""
+    return render_template('home.html')
+
 # ------------------------- SERVER START ---------------------------
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3001, debug=True)
