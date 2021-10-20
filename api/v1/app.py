@@ -47,7 +47,7 @@ def resource_not_found(e): #  Talk About it with the peers
 @app.route("/")
 def home():
     """Home view"""
-    return render_template('home.html')
+    return render_template('index.html')
 
 # ------------------------- SERVER START ---------------------------
 if __name__ == '__main__':
