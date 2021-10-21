@@ -3,12 +3,12 @@
 
 from models.base_model import IOT_Model, Base
 from models.companies import Company
+from models.locations import Location
+from models.campus import Campus
 from models.users import User
 from models.devices import Device
-from models.campus import Campus
 from models.records_humidity import Record_HUMIDITY
 from models.records_temp import Record_TEMP
-from models.locations import Location
 import sqlalchemy
 from sqlalchemy import Column, String, create_engine
 from sqlalchemy.ext.declarative import declarative_base
@@ -79,7 +79,6 @@ class DbEngine():
         obj_dict = {}
         if cls in CLASS_MODELS:
             if cls == 'User':
-                # objects = eval("self.__session.query({}).all()".format(cls))
                 objects = self.__session.query(User).all()
             if cls == 'Company':
                 objects = self.__session.query(Company).all()
@@ -104,12 +103,8 @@ class DbEngine():
 
     def get_one(self, cls, id):
         all_obj = self.get_objects(cls)
-        print("\n\n ALL_OBJ:",all_obj,"\n\n")
-        # key = cls + "." + id
         for key, obj in all_obj.items():
-            print('este es el db tipe')
-            print(type(obj.id))
-            print(obj.id)
-            if obj.id == id:
+            if int(obj.id) == id:
+                print('\n\nobject find it, MATCH \n\n')
                 return obj
         return None

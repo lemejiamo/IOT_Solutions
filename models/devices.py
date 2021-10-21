@@ -11,7 +11,7 @@ from sqlalchemy.orm import relationship
 class Device(IOT_Model, Base):
     """Representation of a user """
     __tablename__ = 'devices'
-    id = Column(Integer, primary_key=True, autoincrement=True, unique=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     campus_id = Column(String(128), ForeignKey('campus.id'), nullable=False)
     location = Column(Integer, ForeignKey('locations.id'),  nullable=False)
     machine = Column(String(50), nullable=False)

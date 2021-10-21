@@ -40,16 +40,22 @@ def record_temp():
 
     if 'device_id' not in json:
         return (make_response(jsonify({'bad_request': 'not device id'})))
-    elif storage.get_one('Device', json['device_id']) is None:
+
+    elif storage.get_one('Device', int(json['device_id'])) is None:
         return (make_response(jsonify({'bad_request': 'Device not exists'})))
+
     elif 'measure' not in json:
         return (make_response(jsonify({'bad_request': 'not Measure Report'})))
 
     record = Record_TEMP(**json)
+    response = ''
+    if record.alert(record):
+        response  = (make_response(jsonify({'succes': 'record save in DB', 'alert':'Measure over average'})))
+    else:
+        response = (make_response(jsonify({'succes': 'record save in DB'})))
+
     record.save()
-
-    return (make_response(jsonify({'succes': 'record save in DB'})))
-
+    return (response)
 
 # |------------------------- RECORD A HUMIDITY MEASURE ------------------------|
 @app_views.route('/records/humidity', methods=['POST'])
@@ -62,17 +68,22 @@ def record_humidity():
     json = request.get_json()
     # mandatory json Keys are 'device_id' and 'measure'
     # date key is not configured yet
-    
 
     if 'device_id' not in json:
-        return (make_response(jsonify({'bad_request': 'not device id report'})))
-    elif storage.get_one('Device', json['device_id']) is None:
+        return (make_response(jsonify({'bad_request': 'not device id'})))
+
+    elif storage.get_one('Device', int(json['device_id'])) is None:
         return (make_response(jsonify({'bad_request': 'Device not exists'})))
+
     elif 'measure' not in json:
-        return (make_response(jsonify({'bad_request': 'not measure report'})))
+        return (make_response(jsonify({'bad_request': 'not Measure Report'})))
 
-    record = Record_HUMIDITY(**json)
+    record = Record_TEMP(**json)
+    response = ''
+    if record.alert(record):
+        response  = (make_response(jsonify({'succes': 'record save in DB', 'alert':'Measure over average'})))
+    else:
+        response = (make_response(jsonify({'succes': 'record save in DB'})))
+
     record.save()
-
-    return (make_response(jsonify({'succes': 'record save in DB'})))
-
+    return (response)

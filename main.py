@@ -19,7 +19,7 @@ company_data = {'NIT': '860062847',
                 }
 
 # dicionario para testear  el usuario
-data = {'id': '860062847',
+data = {'id': '8600628479',
         'user_id': '1022745078',
         'user_email': 'user_1@email.com',
         'password': 'user_1',
@@ -70,4 +70,4 @@ print (campus.__dict__)
 print (device.__dict__)
 
 print("OBJECTS:\n\n")
-print(storage.get_objects("Company"))
+print(storage.get_objects("User"))

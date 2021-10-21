@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ holds class User"""
 
+from sqlalchemy.orm import relationship
 import models
 from models.base_model import IOT_Model, Base
 import sqlalchemy
@@ -14,13 +15,17 @@ class User(IOT_Model, Base, UserMixin):
     """Representation of a user """
 
     __tablename__ = 'users'
-    id = Column(String(128), primary_key=True)
+    id = Column(String(128), primary_key=True, unique=True)
     company_id = Column(String(128), ForeignKey('companies.NIT'), nullable=False)
     campus_id = Column(String(128), ForeignKey('campus.id'), nullable=False)
     user_email = Column(String(128), nullable=False)
     password = Column(String(128), nullable=False)
     telephone = Column(String(128), nullable=False)
     rol = Column(Boolean, default=0)
+    records_TEMP = relationship('Record_TEMP',
+                                 backref='users')
+    records_HUMIDITY = relationship('Record_HUMIDITY',
+                                     backref='users')
 
     def __init__(self, **kwargs):
         """initializes user"""
