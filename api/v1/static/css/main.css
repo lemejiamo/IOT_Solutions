@@ -1,16 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;700&family=Roboto:wght@400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rampart+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap');
 
 body{
   font-family: 'Roboto Mono', monospace;;
   margin: 0;
   padding: 0;
-  background-image: url(../img/abstract.jpg);
 }
 
 a {
   text-decoration: none;
   display: inline;
-  color: black;
+  color: rgb(80, 32, 32);
   cursor: pointer;
 }
 
@@ -92,7 +93,7 @@ main{
 
 .home-main {
   /* height: 100%; */
-  background-image: url(../img/abstract.jpg);
+  background-image: url(../assets/img/abstract.jpg);
   background-position: center;
   background-repeat: no-repeat;
   /* background-size: cover; */
@@ -141,8 +142,8 @@ main{
 }
 
 .login-container{
-  width: 400px;
-  height: 360px;
+  width: 500px;
+  height: 100%;
   /* border: 1px solid red; */
   background:rgb(170, 167, 167);
   margin: auto;
@@ -152,31 +153,68 @@ main{
   border-top: 4px solid #2266be;
 }
 
+.login-container-signup{
+  width: 500px;
+  height: 100%;
+  /* border: 1px solid red; */
+  background:rgb(0, 0, 0);
+  margin: auto;
+  margin-top: 28px;
+  box-shadow: 10px 10px 37px black;
+  padding: 20px 30px;
+  border-top: 4px solid #317bdd;
+}
+
+.login-container-signup h1{
+  margin: auto;
+  /* margin-top: 30PX; */
+  text-align: center;
+  height: 40px;
+  margin-bottom: 20px;
+  padding-bottom: 30px;
+  font-family: 'Rampart One', cursive;
+  font-size: 40px;
+  color: antiquewhite;
+  border-bottom: 1px solid rgb(194, 194, 124);
+}
+
+
 .login-container h1{
   margin: auto;
   margin-top: 30PX;
   text-align: center;
   height: 40px;
   margin-bottom: 15px;
+  font-family: 'Rampart One', cursive;
   border-bottom: 1px solid rgb(22, 22, 21);
 }
 
 .controls {
-  width: 380px;
+  width: 450px;
   border: 1px solid #2266be;
   /* margin-right: 30px; */
+  margin-top: 10px;
   margin-bottom: 15px;
   padding:11px 10px ;
   font-size: 15px;
   font-weight:bold;
 }
 
+.label{
+  margin-bottom: 100px;
+  font-size: 30px ;
+  font-family: 'IM Fell English SC', serif;
+  color: azure;
+}
+
 .button {
-  width: 100%;
-  height: 30px;
+  width: 474PX;
+  height: 40px;
   background: rgba(33, 119, 199, 0.842) ;
   margin-bottom: 20px;
   color: white;
+  font-size: 20px;
+  margin-top: 20px;
 }
 
 .button:hover{
@@ -202,11 +240,11 @@ main{
 }
 
 footer {
-  background: rgb(241, 235, 235) ;
+  background: rgb(170, 167, 167) ;
   width: 100%;
   display: flex;
   justify-content: center;
   height: 60px;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   font-size: 20px;}
