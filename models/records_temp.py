@@ -19,7 +19,7 @@ class Record_TEMP(IOT_Model, Base):
     __tablename__ = 'records_TEMP'
     id = Column(Integer, primary_key=True, unique=True, autoincrement=True)
     device_id = Column(Integer, ForeignKey('devices.id'), nullable=False)
-    # user_id = Column(String(128), ForeignKey('users.id'), nullable=False)
+    user_id = Column(String(128), ForeignKey('users.id'), nullable=False)
     measure = Column(Float, nullable=False)
     date = Column(DateTime, nullable=True, default=datetime.now)
 
