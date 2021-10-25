@@ -18,8 +18,8 @@ CLASS_MODELS = {
     'Company': ['uuid_id', 'created_at', 'NIT', 'name', 'telephone', 'email', 'address', 'id'],
     'User': ['uuid_id', 'created_at', 'id', 'user_email', 'password', 'company_id', 'campus_id', 'telephone'],
     'Campus': ['uuid_id', 'created_at', 'id', 'company_id', 'name'],
-    'Location': ['uuid_id', 'created_at', 'id', 'name'],
-    'Device': ['uuid_id', 'created_at', 'id', 'campus_id', 'location', 'machine'],
+    'Area': ['uuid_id', 'created_at', 'id', 'name'],
+    'Device': ['uuid_id', 'created_at', 'id', 'campus_id', 'location', 'area'],
     'Record_HUMIDITY': ['uuid_id', 'created_at', 'measure', 'date', 'device_id', 'user_id'],
     'Record_TEMP': ['uuid_id', 'created_at', 'measure', 'date', 'device_id', 'user_id']
 }

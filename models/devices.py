@@ -13,8 +13,8 @@ class Device(IOT_Model, Base):
     __tablename__ = 'devices'
     id = Column(Integer, primary_key=True, autoincrement=True)
     campus_id = Column(String(128), ForeignKey('campus.id'), nullable=False)
-    area = Column(String(50), nullable=False)
-    location = Column(Integer, ForeignKey('locations.id'),  nullable=False)
+    location = Column(String(50), nullable=False)
+    area = Column(Integer, ForeignKey('areas.id'),  nullable=False)
     TEMP = relationship('Record_TEMP',
                         backref='devices')
     HUMIDITY = relationship('Record_HUMIDITY',
