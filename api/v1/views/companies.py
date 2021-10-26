@@ -59,7 +59,7 @@ def new_company():
                     flash('Missing Campus Name')
 
             if attribute == 'user_role':
-                if role not in ['1', '0']:
+                if value not in ['1', '0']:
                     flash('Invalid Role!', category="error")
                 if value is None:
                     flash('Missing User Role')
@@ -69,25 +69,25 @@ def new_company():
                     flash('Missing User ID')
 
             if attribute == 'user_email':
-                if len(user_email) < 3 or User.get_user(user_email) is not None:
+                if len(value) < 3 or User.get_user(value) is not None:
                     flash('email too short or the email already exists!', category="error")
                 if value is None:
                     flash('Missing user email')
 
             if attribute == 'user_password':
-                if len(password) < 4:
+                if len(value) < 4:
                     flash('password too short!', category="error")
                 if value is None:
                     flash('Missing user password')
 
             if attribute == 'password2':
-                if password != password2 :
-                   flash('email doesn\'t match!', category="error")
+                #if password != password2 :
+                   #flash('email doesn\'t match!', category="error")
                 if value is None:
                     flash('Missing confirmation password')
 
             if attribute == 'user_telephone':
-                if len(telephone) < 10:
+                if len(value) < 10:
                     flash('Telephone number too short!', category="error")
                 if value is None:
                     flash('Missing user telephone')
