@@ -16,6 +16,7 @@ def new_user():
         print("\n\n\n",request.form,"\n\n\n")
         data = request.form
         role = data.get('role')
+        id = data.get('id')
         user_email = data.get('user_email')
         password = data.get('password')
         password2 = data.get('password2')
@@ -24,6 +25,8 @@ def new_user():
         company_id = data.get("company_id")
         if role not in ['1', '0']:
             flash('Invalid Role!', category="error")
+        elif len(id) < 1 or storage.get_one("User", id) is not None:
+            flash('Id too short or the id already exists!', category="error")
         elif len(user_email) < 3 or User.get_user(user_email) is not None:
             flash('email too short or the email already exists!', category="error")
         elif password != password2 :
@@ -40,9 +43,9 @@ def new_user():
             new_user = User(**request.form)
             new_user.save()
             flash('New user acount created!', category="succes")
-            return render_template("user_signup.py ")
+            return render_template("user_signup.html")
             # make_response(jsonify({'in progres': 'in progres'}), 201)
-        return render_template("user_signup.py ")
+        return render_template("user_signup.html")
 
 @app_views.route('/login', methods=['POST', 'GET'])
 def login():

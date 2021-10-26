@@ -103,7 +103,7 @@ class DbEngine():
     def get_one(self, cls, id):
         all_obj = self.get_objects(cls)
         for key, obj in all_obj.items():
-            if int(obj.id) == id:
+            if obj.id == id:
                 print('\n\nobject find it, MATCH \n\n')
                 return obj
         return None

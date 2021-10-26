@@ -18,6 +18,21 @@ def signUpcampus():
 
     # |------------------- POST -------------------|
     if request.method == 'POST':
-        campus = Campus(**request.form)
-        campus.save()
-        return make_response(jsonify({'Succes ': 'Campus created in DB'}), 201)
+        data = request.form
+        id = data.get("id")
+        company_id = data.get("company_id")
+        if len(id) < 1:
+            flash('Please put an Id!', category="error")
+        elif len(company_id) < 1:
+            flash('Please put a company id!', category="error")
+        elif storage.get_one("Campus", id) is not None:
+            flash('Campus id already exists!', category="error")
+        elif storage.get_one("Company", company_id) is None:
+            flash('Company NIT/id doesn\'t exists!', category="error")
+        else:
+            campus = Campus(**data)
+            campus.save()
+            flash('New campus created!', category="succes")
+            return render_template("campus_signup.html")
+        #return make_response(jsonify({'Succes ': 'Device created in DB'}), 201)
+        return render_template("campus_signup.html")
