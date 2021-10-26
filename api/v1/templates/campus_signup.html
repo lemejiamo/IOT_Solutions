@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Campus SignUp{% endblock %}
+{% block content %}
+    <div class="login-container-signup">
+      <form action="" method="post">
+        <h1>Campus SignUp</h1>
+        <!----------- id INPUT -------------------->
+        <label class="label" for="id">ID</label>
+        <input class="controls" type=" text" id="id" name="id" placeholder="id"/>
+        <!----------- name INPUT -------------------->
+        <label class="label" for="name">Name</label>
+        <input class="controls" type="text" id="name" name="name" placeholder="name"/><br>
+        <!----------- company_id INPUT -------------------->
+        <label class="label" for="company_id">Company Id</label>
+        <input class="controls" type="text" id="company_id" name="company_id" placeholder="company_id"/><br>
+
+        <input class="button" type="submit" value="SUBMIT">
+        <br />
+      </form>
+    </div>
+{% endblock %}

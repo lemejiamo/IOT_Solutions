@@ -2,7 +2,6 @@
 """main to test basic work from models module"""
 
 from models.devices import Device
-from models.areas import Area
 from models.users import User
 from models.companies import Company
 from models.campus import Campus
