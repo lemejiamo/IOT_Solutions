@@ -13,12 +13,12 @@ from models.base_model import CLASS_MODELS
 from models import storage
 
 # |------------------------- REGISTER A NEW DEVICE ------------------------|
-@app_views.route('/device/register', methods=['GET', 'POST'])
+@app_views.route('/sign-up/device', methods=['GET', 'POST'])
 def registry_device():
     """method to create new device-object in DB"""
     # |------------------- GET -------------------|
     if request.method == 'GET':
-        return (render_template('register_device.html'))
+        return (render_template('device_signup.html'))
 
     # |------------------- POST -------------------|
     if request.method == 'POST':

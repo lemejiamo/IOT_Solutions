@@ -7,10 +7,10 @@ from models.users import User
 from api.v1.app import load_user
 from models import storage
 
-@app_views.route('/sign-up', methods=['POST', 'GET'])
+@app_views.route('/sign-up/user', methods=['POST', 'GET'])
 def new_user():
     if request.method == 'GET':
-        return render_template("register.html")
+        return render_template("user_signup.html")
 
     if request.method == 'POST':
         print("\n\n\n",request.form,"\n\n\n")
@@ -40,9 +40,9 @@ def new_user():
             new_user = User(**request.form)
             new_user.save()
             flash('New user acount created!', category="succes")
-            return render_template("register.html")
+            return render_template("user_signup.py ")
             # make_response(jsonify({'in progres': 'in progres'}), 201)
-        return render_template("register.html")
+        return render_template("user_signup.py ")
 
 @app_views.route('/login', methods=['POST', 'GET'])
 def login():
