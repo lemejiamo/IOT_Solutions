@@ -8,4 +8,5 @@ from api.v1.views.signup import *
 from api.v1.views.users import *
 from api.v1.views.records import *
 from api.v1.views.campus import *
+from api.v1.views.companies import *
 
