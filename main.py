@@ -35,12 +35,9 @@ campus = {'id': '1',
           'name': 'Bog_centro'
         }
 
-area = {'id': '5497',
-            'name': 'Cocina_principal'
-        }
 # diccionario para testear el device
 device = {'campus_id': '1',
-          'area': '5497',
+          'area': 'Cocina',
           'location': 'nevera_1'
         }
 
@@ -56,9 +53,6 @@ campus.save()
 
 user = User(**data)
 user.save()
-
-area = Area(**area)
-area.save()
 
 device = Device(**device)
 device.save()

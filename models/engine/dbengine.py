@@ -3,7 +3,6 @@
 
 from models.base_model import IOT_Model, Base
 from models.companies import Company
-from models.areas import Area
 from models.campus import Campus
 from models.users import User
 from models.devices import Device
