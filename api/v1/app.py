@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 
-from api.v1.views import app_views
+from api.v1.views import app_views, views
 from flask import Flask, render_template
 from flask import request, jsonify, make_response
 from flask_login import LoginManager
 from models import storage
 from models.users import User
+from flask_login import current_user
 
 # -------------------------FLASK SERVER SETUP---------------------------
 app = Flask(__name__)
@@ -14,18 +15,19 @@ app.config['SECRET_KEY'] = '8rf5hETrkva_VbldXZikOP0BCpUbp5HimP2LUdBfJXaVjvKh-dFc
 
 # -------------------------BLUEPRINTS POINTS---------------------------
 app.register_blueprint(app_views)
+app.register_blueprint(views)
 
 
 # -------------------------LOGIN MANAGER SETUP---------------------------
 login_manager = LoginManager()
 login_manager.init_app(app)
-login_manager.login_view = "login"
+login_manager.login_view = "app_views.login"
 
 # ------------------------- METHODS ---------------------------
 
 @login_manager.user_loader
-def load_user(user_email):
-    return User.get_user(user_email)
+def load_user(id):
+    return storage.get_one("User", id)
 
 #@login_manager.user_login
 #def user_login(user_obj):
@@ -45,9 +47,9 @@ def resource_not_found(e): #  Talk About it with the peers
 
 
 @app.route("/")
-def home():
+def index():
     """Home view"""
-    return render_template('index.html')
+    return render_template('index.html', user=current_user)
 
 # ------------------------- SERVER START ---------------------------
 if __name__ == '__main__':
