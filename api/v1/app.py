@@ -3,10 +3,9 @@
 from api.v1.views import app_views, views
 from flask import Flask, render_template
 from flask import request, jsonify, make_response
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
 from models import storage
 from models.users import User
-from flask_login import current_user
 
 # -------------------------FLASK SERVER SETUP---------------------------
 app = Flask(__name__)

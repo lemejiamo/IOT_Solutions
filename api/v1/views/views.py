@@ -7,7 +7,7 @@ from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import check_password_hash
 
 
-@views.route("/home", methods=['GET', 'POST'])
+@views.route("/home_user", methods=['GET', 'POST'])
 @login_required
 def home():
     print(current_user.__dict__)
