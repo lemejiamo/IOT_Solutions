@@ -53,28 +53,23 @@ class DbEngine():
                                              MYSQL_DBASE))
 
     def init_session(self):
-
         Session_factory = sessionmaker(self.__engine)
         session = scoped_session(Session_factory)
         self.__session = session
 
     def reload(self):
+        self.init_session()
         Base.metadata.create_all(self.__engine)
 
     def save(self, obj):
-        self.init_session()
-        try:
-            self.__session.add(obj)
-            self.__session.commit()
-        finally:
-            self.close_session()
+        self.__session.add(obj)
+        self.__session.commit()
 
     def close_session(self):
         self.__session.remove()
 
     def get_objects(self, cls=None):
         from models.base_model import CLASS_MODELS
-        self.init_session()
         obj_dict = {}
         if cls in CLASS_MODELS:
             if cls == 'User':
@@ -90,15 +85,12 @@ class DbEngine():
             if cls == 'Record_HUMIDITY':
                 objects = self.__session.query(Record_HUMIDITY).all()
 
+            for obj in objects:
+                key = obj.__class__.__name__ + '.' + obj.uuid_id
+                obj_dict[key] = obj
+            return (obj_dict)
         else:
-            self.close_session()
-            return
-
-        for obj in objects:
-            key = obj.__class__.__name__ + '.' + obj.uuid_id
-            obj_dict[key] = obj
-        self.close_session()
-        return (obj_dict)
+            return None
 
     def get_one(self, cls, id):
         all_obj = self.get_objects(cls)

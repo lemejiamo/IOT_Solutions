@@ -33,10 +33,10 @@ def load_user(id):
 #   return login_user(user_obj)
 
 
-#@app.teardown_appcontext
-#def close_db(error):
-#   """ Close Storage """
-#   storage.close_session()
+@app.teardown_appcontext
+def close_db(self):
+   """ Close Storage """
+   storage.close_session()
 
 @app.errorhandler(404)
 def resource_not_found(e): #  Talk About it with the peers
