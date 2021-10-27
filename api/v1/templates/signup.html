@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}User SignUp{% endblock %}
+{% block content %}
+    <div class="login-container-signup">
+      <form action="" method="post">
+        <h1>IoT - SignUp</h1>
+        <form>
+          <button class="button" type="button">
+            <a href="/api/v1/sign-up/company">Company</a>
+          </button>
+        </form>
+        <form>
+          <button class="button" type="button">
+            <a href="/api/v1/sign-up/campus">Campus</a>
+          </button>
+        </form>
+        <form>
+          <button class="button" type="button">
+            <a href="/api/v1/sign-up/user">User</a>
+          </button>
+        </form>
+        <form>
+          <button class="button" type="button">
+            <a href="/api/v1/sign-up/device">Device</a>
+          </button>
+        </form>
+
+      </form>
+    </div>
+{% endblock %}

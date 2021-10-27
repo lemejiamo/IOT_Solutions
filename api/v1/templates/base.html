@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static' , filename='css/main.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static' , filename='css/font/flaticon.css') }}">
+  <link rel="shortcut icon" href="../static/img/...">
+  <title>{% block title %}Home{% endblock %}</title>
+</head>
+
+
+<body>
+  <header>
+    <section class="header-icons-container">
+      <div class="icons">
+        <a href="/"> <span class="flaticon-001-facebook"></span></a>
+        <a href="/"> <span class="flaticon-002-twitter"></span></a>
+        <a href="/"> <span class="flaticon-011-instagram"></span></a>
+      </div>
+      <nav class="nav-items">
+        <a class="items-nav" id="home" href="/">Home</a>
+        <a class="items-nav" id="logout" href="/api/v1/logout">Logout</a>
+        <a class="items-nav" id="login" href="/api/v1/login">Login</a>
+        <a class="items-nav" id="signUp" href="/api/v1/signup">SignUp</a>
+      </nav>
+    </section>
+  </header>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+      {% if category == 'error' %}
+        <div class="alert alert-danger alter-dismissable fade show" role="alert">
+          {{ message}}
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      {% else %}
+        <div class="alert alert-success alter-dismissable fade show" role="alert">
+          {{ message}}
+            <button type="button" class="close" data-dismiss="alert">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+      {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <main class="">
+    {% block content %}
+    {% endblock %}
+  </ma>
+  <footer>
+    <p> Made for Holberton School 🎓</p>
+  </footer>
+</body>
+
+</html>
