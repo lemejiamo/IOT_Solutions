@@ -8,6 +8,7 @@ from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import check_password_hash
 
 @app_views.route('/sign-up/user', methods=['POST', 'GET'])
+@login_required
 def new_user():
     if request.method == 'POST':
         print("\n\n\n",request.form,"\n\n\n")

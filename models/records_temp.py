@@ -39,8 +39,8 @@ class Record_TEMP(IOT_Model, Base):
                 origin_email =  'IOTSolutionsHolbi@gmail.com'
                 password = 'AZ2hQnYZhKfMP9S'
 
-                user_id = int(obj.user_id)
-                destiny_email = models.storage.get_one('User', int(obj.user_id)).__dict__['user_email']
+                user_id = obj.user_id
+                destiny_email = models.storage.get_one('User', obj.user_id).__dict__['user_email']
                 print('sending email to \n\n')
                 print('\t\t {}'.format(destiny_email))
 

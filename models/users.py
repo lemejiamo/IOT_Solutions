@@ -22,10 +22,10 @@ class User(IOT_Model, Base, UserMixin):
     password = Column(String(128), nullable=False)
     telephone = Column(String(128), nullable=False)
     rol = Column(Boolean, default=0)
-    # records_TEMP = relationship('Record_TEMP',
-    #                             backref='users')
-    # records_HUMIDITY = relationship('Record_HUMIDITY',
-    #                                 backref='users')
+    records_TEMP = relationship('Record_TEMP',
+                                 backref='users')
+    records_HUMIDITY = relationship('Record_HUMIDITY',
+                                     backref='users')
 
     def __init__(self, **kwargs):
         """initializes user"""
