@@ -12,6 +12,44 @@ print(campus)
 storage.init_session()
 print(campus.devices)
 storage.close_session()
+
+# test uno crear una compañia con datos fake
+company_data = {'NIT': '001',
+                'name': 'iot_solutions',
+                'telephone': '00000',
+                'email': 'admin@iotsolutions.com',
+                'address': 'av evergreen',
+                'id': '001'
+                }
+
+# dicionario para testear  el usuario
+data = {'id': '999',
+        'user_id': '999',
+        'user_email': 'admin@iotsolutions.com',
+        'password': 'root33',
+        'rol': True,
+        'telephone': '0000000',
+        'campus_id': '1',
+        'company_id': '001'
+        }
+# dicionario para testear  el campus
+campus = {'id': '999',
+          'company_id': '001',
+          'name': 'Timiza'
+        }
+
+
+# creacion de los models base
+company = Company(**company_data)
+company.save()
+
+campus = Campus(**campus)
+campus.save()
+
+
+user = User(**data)
+user.save()
+
 """# dicionario para testear  el usuario
 data = {'id': '860062848',
         'user_id': '123456789',
@@ -57,7 +95,6 @@ data3 = {'id': '860062843',
 
 
 
-
 user = User(**data)
 user.save()
 
@@ -69,8 +106,7 @@ user2.save()
 
 user3 = User(**data3)
 user3.save()
-
+"""
 
 # print de la representacion en dicionario de las instancias
 print(storage.get_objects("User"))
-"""
