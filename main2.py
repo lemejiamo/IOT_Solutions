@@ -2,15 +2,17 @@
 """main to test basic work from models module"""
 
 from models.devices import Device
-from models.locations import Location
 from models.users import User
 from models.companies import Company
 from models.campus import Campus
 from models import storage
 
-
-
-# dicionario para testear  el usuario
+campus = storage.get_one("Campus", "1")
+print(campus)
+storage.init_session()
+print(campus.devices)
+storage.close_session()
+"""# dicionario para testear  el usuario
 data = {'id': '860062848',
         'user_id': '123456789',
         'user_email': 'luismejia69@gmail.com',
@@ -71,4 +73,4 @@ user3.save()
 
 # print de la representacion en dicionario de las instancias
 print(storage.get_objects("User"))
-
+"""

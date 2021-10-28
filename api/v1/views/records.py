@@ -11,15 +11,12 @@ from models.records_temp import Record_TEMP
 from api.v1.views import app_views
 from models.base_model import CLASS_MODELS
 from models import storage
+from flask_login import current_user
 
 # |------------------------- REGISTER A NEW DEVICE ------------------------|
 @app_views.route('/sign-up/device', methods=['GET', 'POST'])
 def registry_device():
     """method to create new device-object in DB"""
-    # |------------------- GET -------------------|
-    if request.method == 'GET':
-        return (render_template('device_signup.html'))
-
     # |------------------- POST -------------------|
     if request.method == 'POST':
         data = request.form
@@ -38,9 +35,8 @@ def registry_device():
             device = Device(**data)
             device.save()
             flash('New device created!', category="succes")
-            return render_template("device_signup.html")
             #return make_response(jsonify({'Succes ': 'Device created in DB'}), 201)
-        return render_template("device_signup.html")
+    return render_template("device_signup.html", user=current_user)
 
 # |------------------------- RECORD A TEMP MEASURE ------------------------|
 @app_views.route('/records/temp', methods=['POST'])

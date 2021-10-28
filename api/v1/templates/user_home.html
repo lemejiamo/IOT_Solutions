@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Campus SignUp{% endblock %}
+{% block content %}
+    <ul>
+        {% for device in devices %}
+        <li>
+            {{ device.area }}: {{ device.location }}:{{ device.id }}
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
