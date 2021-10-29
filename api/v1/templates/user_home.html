@@ -1,6 +1,13 @@
 {% extends "base.html" %}
 {% block title %}Campus SignUp{% endblock %}
 {% block content %}
+    <form method="POST">
+        <div class="form-group">
+            <label for="id">id</label>
+            <input type="text" class="controls" id="id" name="id" placeholder="Device id">
+        </div>
+        <input class="button" type="submit" value="search">
+    </form>
     <ul>
         {% for device in devices %}
         <li>

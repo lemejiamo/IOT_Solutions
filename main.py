@@ -18,8 +18,7 @@ company_data = {'NIT': '860062847',
                 }
 
 # dicionario para testear  el usuario
-data = {'id': '8600628479',
-        'user_id': '1022745078',
+data = {'id': '2',
         'user_email': 'user_1@email.com',
         'password': 'user_1',
         'rol': True,

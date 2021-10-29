@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Campus SignUp{% endblock %}
+{% block content %}
+    {{ device.campus_id }}
+    <h1>Area: {{ device.area }} Location: {{ device.location }} Id:{{ device.id }}</h1>
+    <h3>measure&emsp;Date</h3>
+    <ul>
+        {% for record in device.TEMP %}
+        <li>
+            {{ record.measure }}&emsp;{{ record.date }}
+        </li>
+        <br />
+        {% endfor %}
+    </ul>
+    <br />
+    <table>
+
+            {{ table|safe }}
+
+    </table>
+    <br /><br />
+    <img src="data:image/png;base64,{{ graph }}">
+
+{% endblock %}
