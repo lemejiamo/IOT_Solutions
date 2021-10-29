@@ -1,18 +1,35 @@
 {% extends "base.html" %}
 {% block title %}Campus SignUp{% endblock %}
 {% block content %}
+    <div class="container" style="margin: 100px">
+    <div class="row">
     <form method="POST">
         <div class="form-group">
             <label for="id">id</label>
             <input type="text" class="controls" id="id" name="id" placeholder="Device id">
+            <input class="button" type="submit" value="search">
         </div>
-        <input class="button" type="submit" value="search">
     </form>
-    <ul>
-        {% for device in devices %}
-        <li>
-            {{ device.area }}: {{ device.location }}:{{ device.id }}
-        </li>
-        {% endfor %}
-    </ul>
+    <table class="table">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Campus</th>
+            <th scope="col">Area</th>
+            <th scope="col">Location</th>
+            <th scope="col">Device_Id</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% for device in devices %}
+                    <td>{{ campus.name }}</td>
+                    <td>{{ device.area }}</td>
+                    <td>{{ device.location }}</td>
+                    <td>{{ device.id }}</td>
+                {% endfor %}
+              </tr>
+        </tbody>
+    </table>
+    </div>
+    </div>
 {% endblock %}
