@@ -1,19 +1,16 @@
  #!/usr/bin/python3
 
 from flask import request, make_response, jsonify, render_template, flash
-from api.v1.views import app_views
+from api.v1.views import app_views, views
 from models.companies import Company
 from models.campus import Campus
 from models.users import User
 from api.v1.app import load_user
 from models import storage
+from flask_login import current_user
 
-
-@app_views.route('/sign-up/company', methods=['POST', 'GET'])
+@views.route('/sign-up/company', methods=['POST', 'GET'])
 def new_company():
-    if request.method == 'GET':
-        return render_template("company_signup.html")
-
     if request.method == 'POST':
         MODELS = {
             'Company': [('NIT', 'NIT'), ('name', 'company_name'), ('telephone', 'company_telephone'), ('email', 'company_email'), ('address', 'company_address'), ('id', 'NIT')],
@@ -23,7 +20,7 @@ def new_company():
 
         print("\n\n\n",request.form,"\n\n\n")
         data = request.form
-        
+
         def _exceptions(attribute, value):
             if attribute == 'NIT':
                 if storage.get_one('Company', value):
@@ -31,7 +28,7 @@ def new_company():
                     flash('Company already exists!', category="error")
                 if len(value) < 9:
                     flash('Wrong NIT please verify the NIT number')
-            
+
             if attribute == 'company_name':
                 if value is None:
                     flash('Missing Company Name')
@@ -40,7 +37,7 @@ def new_company():
                 if value is None:
                     flash('Missing Company Telephone')
                 if len(value) != 10:
-                    flash('Please verify telephone number') 
+                    flash('Please verify telephone number')
 
             if attribute == 'company_email':
                 if value is None:
@@ -91,28 +88,28 @@ def new_company():
                     flash('Telephone number too short!', category="error")
                 if value is None:
                     flash('Missing user telephone')
-        
+
             print('no exceptions found {}'.format(attribute))
-        
+
         for key, value in data.items():
             print('key {} type{}, value {} type{}'.format(key, value, type(key), type(value)))
-            _exceptions(key, value) 
+            _exceptions(key, value)
 
         company_data = {}
         user_data = {}
         campus_data =  {}
         for key, value in MODELS.items():
-            if key is 'Company':
+            if key == 'Company':
                 for value_key in value:
-                    company_data[value_key[0]] = data.get(value_key[1]) 
+                    company_data[value_key[0]] = data.get(value_key[1])
                 print (company_data)
-            if key is 'User':
+            if key == 'User':
                 for value_key in value:
-                    user_data[value_key[0]] = data.get(value_key[1]) 
+                    user_data[value_key[0]] = data.get(value_key[1])
                 print (user_data)
-            if key is 'Campus':
+            if key == 'Campus':
                 for value_key in value:
-                    campus_data[value_key[0]] = data.get(value_key[1]) 
+                    campus_data[value_key[0]] = data.get(value_key[1])
                 print (campus_data)
 
         company = Company(**company_data)
@@ -121,5 +118,6 @@ def new_company():
         campus.save()
         user = User(**user_data)
         user.save()
-
-        return (make_response(jsonify('Sucesful created in data base', 202)))
+        flash("Sucesful created in data base")
+        #return (make_response(jsonify('Sucesful created in data base', 202)))
+    return render_template("company_signup.html", user=current_user)

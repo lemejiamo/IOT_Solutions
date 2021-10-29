@@ -2,9 +2,7 @@
 """ holds class User"""
 
 from sqlalchemy.orm import relationship
-import models
 from models.base_model import IOT_Model, Base
-import sqlalchemy
 from sqlalchemy import Column, String, ForeignKey, Integer, Boolean
 from flask_login import UserMixin
 from werkzeug.security import check_password_hash, generate_password_hash

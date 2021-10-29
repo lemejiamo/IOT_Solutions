@@ -1,17 +1,14 @@
  #!/usr/bin/python3
 
-from hashlib import new
-from flask import request, make_response, jsonify, render_template, flash
-from api.v1.views import app_views
+from flask import request, url_for, render_template, flash, redirect
+from api.v1.views import app_views, views
 from models.users import User
-from api.v1.app import load_user
 from models import storage
+from flask_login import login_user, login_required, logout_user, current_user
+from werkzeug.security import check_password_hash
 
-@app_views.route('/sign-up/user', methods=['POST', 'GET'])
+@views.route('/sign-up/user', methods=['POST', 'GET'])
 def new_user():
-    if request.method == 'GET':
-        return render_template("user_signup.html")
-
     if request.method == 'POST':
         print("\n\n\n",request.form,"\n\n\n")
         data = request.form
@@ -43,27 +40,28 @@ def new_user():
             new_user = User(**request.form)
             new_user.save()
             flash('New user acount created!', category="succes")
-            return render_template("user_signup.html")
             # make_response(jsonify({'in progres': 'in progres'}), 201)
-        return render_template("user_signup.html")
+    return render_template("user_signup.html", user=current_user)
 
-@app_views.route('/login', methods=['POST', 'GET'])
+@views.route('/login', methods=['POST', 'GET'])
 def login():
-    if request.method == 'GET':
-        return render_template("login.html")
-
     if request.method == 'POST':
-        # verificar  el contenido del al peticion
-        # si existe el formulario
-        # retorna error, redirecciona a pagina de error
-
-        email = request.form['email']
-        password = request.form['password']
-
-        user = User.verify_user(email, password)
+        email = request.form.get('email')
+        password = request.form.get('password')
+        user = User.get_user(email)
         if user:
-            # user_login(user)
-            return ("Welcome") #redireccionar a la pagina correspondiente
+            if User.verify_user(email, password):
+                flash('Logged in successfully!', category='success')
+                login_user(user, remember=True)
+                return redirect(url_for('views.home'))
+            else:
+                flash('Incorrect password, try again!', category='error')
         else:
-            return ("User or Password Invalid")
+            flash('Email does not exists!', category="error")
+    return render_template("login.html", user=current_user)
 
+@views.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("views.login"))

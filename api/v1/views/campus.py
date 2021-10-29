@@ -4,18 +4,15 @@
 from flask import request, make_response, jsonify, render_template, flash
 from flask.helpers import make_response
 from flask.json import jsonify
-from api.v1.views import app_views
+from api.v1.views import app_views, views
 from models.base_model import CLASS_MODELS
 from models import storage
 from models.campus import Campus
+from flask_login import current_user
 
-@app_views.route("/sign-up/campus", methods=['GET', 'POST'])
+@views.route("/sign-up/campus", methods=['GET', 'POST'])
 def signUpcampus():
     """method to create new campus-object in DB"""
-    # |------------------- GET -------------------|
-    if request.method == 'GET':
-        return (render_template('campus_signup.html'))
-
     # |------------------- POST -------------------|
     if request.method == 'POST':
         data = request.form
@@ -33,6 +30,4 @@ def signUpcampus():
             campus = Campus(**data)
             campus.save()
             flash('New campus created!', category="succes")
-            return render_template("campus_signup.html")
-        #return make_response(jsonify({'Succes ': 'Device created in DB'}), 201)
-        return render_template("campus_signup.html")
+    return render_template("campus_signup.html", user=current_user)

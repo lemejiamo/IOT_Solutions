@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}User Home{% endblock %}
+{% block content %}
+<div class="container" style="margin-top:50px">
+    <h3>User: {{ user.user_email }}</h3>
+    <form method="POST" style="margin:50px">
+        <div class="form-group">
+            <label for="id">id</label>
+            <input type="text" class="controls" id="id" name="id" placeholder="Device id">
+            <input class="button" type="submit" value="search">
+        </div>
+    </form>
+    <table class="table table-responsive">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Campus</th>
+            <th scope="col">Area</th>
+            <th scope="col">Location</th>
+            <th scope="col">Device_Id</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% for campus in campuses | sort(attribute='company_id, id')%}
+                    {% if campus.devices %}
+                    <td>{{ campus.name }}</td>
+                    {% for device in campus.devices %}
+                        <td>{{ device.area }}</td>
+                        <td>{{ device.location }}</td>
+                        <td>{{ device.id }}</td>
+                    {% endfor %}
+                    {% endif %}
+                {% endfor %}
+              </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}
