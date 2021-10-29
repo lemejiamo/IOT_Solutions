@@ -5,9 +5,9 @@
     <h3>User: {{ user.user_email }}</h3>
     <form method="POST" style="margin:50px">
         <div class="form-group">
-            <label for="id">id</label>
+            <label for="id"> Search by Device_id &nbsp;</label>
             <input type="text" class="controls" id="id" name="id" placeholder="Device id">
-            <input class="button" type="submit" value="search">
+            <input class="btn btn-dark" type="submit" value="Search">
         </div>
     </form>
     <table class="table table-responsive">
@@ -20,18 +20,16 @@
           </tr>
         </thead>
         <tbody>
-            <tr>
-                {% for campus in campuses | sort(attribute='company_id, id')%}
-                    {% if campus.devices %}
-                    <td>{{ campus.name }}</td>
+                {% for campus in campuses | sort(attribute='company_id, id') %}
                     {% for device in campus.devices %}
+                    <tr>
+                        <td>{{ campus.name }}</td>
                         <td>{{ device.area }}</td>
                         <td>{{ device.location }}</td>
                         <td>{{ device.id }}</td>
+                    </tr>
                     {% endfor %}
-                    {% endif %}
                 {% endfor %}
-              </tr>
         </tbody>
     </table>
 </div>

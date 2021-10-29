@@ -56,6 +56,10 @@ def device_records(id):
     b2 = base64.b64encode(buffer)
     graph = b2.decode('utf-8')
 
+    table=[]
+    table.append(filtered_df["Temp"])
+    table.append(pd.to_datetime(filtered_df["Date"]).dt.strftime("%B-%d"))
+    table.append(pd.to_datetime(filtered_df["Date"]).dt.strftime("%H:%M"))
+
     return render_template("device_records.html", user=current_user,
-                            device=device, mesure=filtered_df["Temp"],
-                            date=filtered_df["Date"], graph=graph)
+                            device=device, table=table, graph=graph, size=len(table[0]))
