@@ -28,10 +28,10 @@ body {
   color: white;
 }
 
-/* #carousel .overlay .container,
+#carousel .overlay .container,
 #carousel .overlay .row{
   height: 100%;
-} */
+}
 
 .image-github{
   height: 40px;
