@@ -7,7 +7,7 @@ from models import storage
 from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import check_password_hash
 
-@app_views.route('/sign-up/user', methods=['POST', 'GET'])
+@views.route('/sign-up/user', methods=['POST', 'GET'])
 def new_user():
     if request.method == 'POST':
         print("\n\n\n",request.form,"\n\n\n")
@@ -43,7 +43,7 @@ def new_user():
             # make_response(jsonify({'in progres': 'in progres'}), 201)
     return render_template("user_signup.html", user=current_user)
 
-@app_views.route('/login', methods=['POST', 'GET'])
+@views.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
         email = request.form.get('email')
@@ -60,8 +60,8 @@ def login():
             flash('Email does not exists!', category="error")
     return render_template("login.html", user=current_user)
 
-@app_views.route('/logout')
+@views.route('/logout')
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for("app_views.login"))
+    return redirect(url_for("views.login"))

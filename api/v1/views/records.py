@@ -8,13 +8,13 @@ from flask.json import jsonify
 from models.devices import Device
 from models.records_humidity import Record_HUMIDITY
 from models.records_temp import Record_TEMP
-from api.v1.views import app_views
+from api.v1.views import app_views, views
 from models.base_model import CLASS_MODELS
 from models import storage
 from flask_login import current_user
 
 # |------------------------- REGISTER A NEW DEVICE ------------------------|
-@app_views.route('/sign-up/device', methods=['GET', 'POST'])
+@views.route('/sign-up/device', methods=['GET', 'POST'])
 def registry_device():
     """method to create new device-object in DB"""
     # |------------------- POST -------------------|

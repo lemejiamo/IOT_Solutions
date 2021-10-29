@@ -1,7 +1,7 @@
  #!/usr/bin/python3
 
 from flask import request, make_response, jsonify, render_template, flash
-from api.v1.views import app_views
+from api.v1.views import app_views, views
 from models.companies import Company
 from models.campus import Campus
 from models.users import User
@@ -9,7 +9,7 @@ from api.v1.app import load_user
 from models import storage
 from flask_login import current_user
 
-@app_views.route('/sign-up/company', methods=['POST', 'GET'])
+@views.route('/sign-up/company', methods=['POST', 'GET'])
 def new_company():
     if request.method == 'POST':
         MODELS = {
@@ -99,15 +99,15 @@ def new_company():
         user_data = {}
         campus_data =  {}
         for key, value in MODELS.items():
-            if key is 'Company':
+            if key == 'Company':
                 for value_key in value:
                     company_data[value_key[0]] = data.get(value_key[1])
                 print (company_data)
-            if key is 'User':
+            if key == 'User':
                 for value_key in value:
                     user_data[value_key[0]] = data.get(value_key[1])
                 print (user_data)
-            if key is 'Campus':
+            if key == 'Campus':
                 for value_key in value:
                     campus_data[value_key[0]] = data.get(value_key[1])
                 print (campus_data)
