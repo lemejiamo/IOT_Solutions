@@ -3,9 +3,6 @@ body {
   background-color: rgb(235, 229, 224) ;
 }
 
-#header{
-  position: fixed;
-}
 
 #header .container p{
   font-size: 30px;
