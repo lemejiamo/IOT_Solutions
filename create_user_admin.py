@@ -41,6 +41,5 @@ company.save()
 campus = Campus(**campus)
 campus.save()
 
-
 user = User(**user)
 user.save()
