@@ -15,8 +15,15 @@ import base64
 @views.route("/user_home", methods=['GET', 'POST'])
 @login_required
 def home():
-    if current_user.user_email == "admin@iotsolutions.com":
-        campuses = storage.get_objects("Campus").values()
+
+    if current_user.rol:
+        all_campuses = storage.get_objects("Campus").values()
+        if current_user.user_email == "admin@iotsolutions.com":
+            campuses = all_campuses
+        else:
+            campuses = [campus for campus in all_campuses if campus.company_id == current_user.company_id]
+
+
     else:
         campuses = [storage.get_one("Campus", current_user.campus_id)]
     if request.method == 'POST':

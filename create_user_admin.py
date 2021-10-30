@@ -22,7 +22,7 @@ user = {'id': '999',
         'user_id': '999',
         'user_email': 'admin@iotsolutions.com',
         'password': os.getenv('ADMIN_PASS'),
-        'rol': True,
+        'rol': 1,
         'telephone': '0000000',
         'campus_id': '999',
         'company_id': '001'

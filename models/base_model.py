@@ -16,7 +16,7 @@ Base = declarative_base()
 
 CLASS_MODELS = {
     'Company': ['uuid_id', 'created_at', 'NIT', 'name', 'telephone', 'email', 'address', 'id'],
-    'User': ['uuid_id', 'created_at', 'id', 'user_email', 'password', 'company_id', 'campus_id', 'telephone'],
+    'User': ['uuid_id', 'created_at', 'id', 'user_email', 'password', 'company_id', 'campus_id', 'telephone', 'rol'],
     'Campus': ['uuid_id', 'created_at', 'id', 'company_id', 'name'],
     'Area': ['uuid_id', 'created_at', 'id', 'name'],
     'Device': ['uuid_id', 'created_at', 'id', 'campus_id', 'location', 'area'],
