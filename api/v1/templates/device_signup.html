@@ -1,24 +1,40 @@
 {% extends "base.html" %}
 {% block title %}Device SignUp{% endblock %}
 {% block content %}
-    <div class="login-container-signup">
-      <form action="" method="post">
-        <h1>Device SignUp</h1>
-        <!----------- id INPUT -------------------->
-        <label class="label" for="id">ID</label>
-        <input class="controls" type=" text" id="id" name="id" placeholder="id"/>
-        <!----------- campus_id INPUT -------------------->
-        <label class="label" for="campus_id">Campus id</label>
-        <input class="controls" type="text" id="campus_id" name="campus_id" placeholder="campus_id"/><br>
-        <!----------- area INPUT -------------------->
-        <label class="label" for="area">Area</label>
-        <input class="controls" type="text" id="area" name="area" placeholder="area"/><br>
-        <!----------- location INPUT -------------------->
-        <label class="label" for="location">Location</label>
-        <input class="controls" type="text" id="location" name="location" placeholder="location"/><br>
-
-        <input class="button" type="submit" value="SUBMIT">
-        <br />
-      </form>
+<div class="login-container-signup">
+  <form action="" method="post">
+    <div class="col-12 text-center mt-5">
+      <h1>Device SignUp</h1>
     </div>
+
+    <!----------- id INPUT -------------------->
+    <div class="col-12  mt-4 text-center">
+      <label class="label" for="id">ID</label>
+      <input class="controls" type=" text" id="id" name="id" placeholder="id" />
+    </div>
+
+    <!----------- campus_id INPUT -------------------->
+    <div class="col-12  mt-4 text-center">
+      <label class="label" for="campus_id">Campus id</label>
+      <input class="controls" type="text" id="campus_id" name="campus_id" placeholder="campus_id" /><br>
+    </div>
+
+    <!----------- area INPUT -------------------->
+    <div class="col-12  mt-4 text-center">
+      <label class="label" for="area">Area</label>
+      <input class="controls" type="text" id="area" name="area" placeholder="area" /><br>
+    </div>
+
+    <!----------- location INPUT -------------------->
+    <div class="col-12  mt-4 text-center">
+      <label class="label" for="location">Location</label>
+      <input class="controls" type="text" id="location" name="location" placeholder="location" /><br>
+    </div>
+
+    <div class="col-12  mt-4 text-center">
+      <input class="button" type="submit" value="SUBMIT">
+    </div>
+    <br />
+  </form>
+</div>
 {% endblock %}

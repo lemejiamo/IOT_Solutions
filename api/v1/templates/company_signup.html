@@ -1,60 +1,101 @@
+{% extends "base.html" %}
+{% block title %}User SignUp{% endblock %}
+{% block content %}
+<div class="login-container-signup">
+  <form action="" method="post">
+    <div class="col-12 text-center mt-5">
+      <h1>Company SignUp</h1>
+    </div>
 
-  {% extends "base.html" %}
-  {% block title %}User SignUp{% endblock %}
-  {% block content %}
-      <div class="login-container-signup">
-        <form action="" method="post">
-          <h1>Company SignUp</h1>
+    <!------------ BEGIN CAMPUS SECTION -------->
+    <!-----NIT IMPUT -->
+    <div class="col-12  mt-4 text-center">
+      <label for="NIT" class="label">NIT </label>
+      <input class="controls" type="text" id="NIT" name="NIT" placeholder="NIT" />
+    </div>
 
-          <!------------ BEGIN CAMPUS SECTION -------->
-          <!-----NIT IMPUT -->
-          <label for="NIT" class="label">NIT </label>
-          <input class="controls" type="text" id="NIT" name="NIT" placeholder="NIT" />
-          <!----------- COMPANY NAME INPUT --------------------->
-          <label for="company_name" class="label">Company Name </label>
-          <input class="controls" type="text" id="company_name" name="company_name" placeholder="COMPANY NAME" />
-          <!------------COMPANY TELEPHONE INPUT -------->
-          <label for="company_telephone" class="label">Company Telephone </label>
-          <input class="controls" type="text" id="company_telephone" name="company_telephone" placeholder="Company Telephone" />
-          <!------------ COMPANY EMAIL INPUT ------------------> 
-          <label for="company_email" class="label">Company Email </label>
-          <input class="controls" type="text" id="company_email" name="company_email" placeholder="Company Email" />
-          <!------------ COMPANY ADDRESS INPUT ------------------> 
-          <label for="company_address" class="label">Company Address </label>
-          <input class="controls" type="text" id="company_address" name="company_address" placeholder="Company Adress" />
-  
-          <!------------ END COMPANY SECTION -------->
+    <!----------- COMPANY NAME INPUT --------------------->
+    <div class="col-12  mt-3 text-center">
+      <label for="company_name" class="label">Company Name </label>
+      <input class="controls" type="text" id="company_name" name="company_name" placeholder="COMPANY NAME" />
+    </div>
 
-          <!------------ BEGIN CAMPUS SECTION -------->
-          <!-----------  ID INPUT --------------------->
-          <label for="campus_id" class="label">Campus ID </label>
-          <input class="controls" type="text" id="campus_id" name="campus_id" placeholder="CAMPUS_ID" />
-          <!-----------  NAME INPUT --------------------->
-          <label for="campus_name" class="label">Campus Name </label>
-          <input class="controls" type="text" id="campus_name" name="campus_name" placeholder="CAMPUS NAME" />
-          
-          <!------------ END CAMPUES SECTION -------->
+    <!------------COMPANY TELEPHONE INPUT -------->
+    <div class="col-12  mt-4 text-center">
+      <label for="company_telephone" class="label">Company Telephone </label>
+      <input class="controls" type="text" id="company_telephone" name="company_telephone"
+        placeholder="Company Telephone" />
+    </div>
 
-          <!----------- ROLE INPUT -------------------->
-          <label class="label" for="user_role">User Role </label>
-          <input class="controls" type=" text" id="user_role" name="user_role" placeholder="USER ROLE" />
-          <!-----------  ID INPUT --------------------->
-          <label for="user_id" class="label">User ID </label>
-          <input class="controls" type="text" id="user_id" name="user_id" placeholder="USER ID" />
-          <!------------ EMAIL INPUT ------------------>
-          <label for="user_email" class="label">User Email </label>
-          <input class="controls" type="text" id="user_email" name="user_email" placeholder="USER EMAIL" />
-          <!------------ PASSWORD INPUT ------------------>
-          <label for="user_password" class="label">User Password </label>
-          <input class="controls" type="password" id="user_password" name="user_password" placeholder="USER PASSWORD" />
-          <!------------ CONFIRM PASSWORD INPUT -------->
-          <label for="password2" class="label">Confirm Password </label>
-          <input class="controls" type="password" id="password2" name="password2" placeholder="CONFIRM PASSWORD" />
-          <!------------ TELEPHONE INPUT -------->
-          <label for="user_telephone" class="label">User Telephone </label>
-          <input class="controls" type="text" id="user_telephone" name="user_telephone" placeholder="USER TELEPHONE" />
-          <!------------ END USER SECTION -------->
-          <input class="button" type="submit" value="SUBMIT">
-        </form>
-      </div>
-  {% endblock %}
+    <!------------ COMPANY EMAIL INPUT ------------------>
+    <div class="col-12  mt-4 text-center">
+      <label for="company_email" class="label">Company Email </label>
+      <input class="controls" type="text" id="company_email" name="company_email" placeholder="Company Email" />
+    </div>
+
+    <!------------ COMPANY ADDRESS INPUT ------------------>
+    <div class="col-12  mt-4 text-center">
+      <label for="company_address" class="label">Company Address </label>
+      <input class="controls" type="text" id="company_address" name="company_address" placeholder="Company Adress" />
+    </div>
+
+    <!------------ END COMPANY SECTION -------->
+
+    <!------------ BEGIN CAMPUS SECTION -------->
+    <!-----------  ID INPUT --------------------->
+    <div class="col-12  mt-4 text-center">
+      <label for="campus_id" class="label">Campus ID </label>
+      <input class="controls" type="text" id="campus_id" name="campus_id" placeholder="CAMPUS_ID" />
+    </div>
+
+    <!-----------  NAME INPUT --------------------->
+    <div class="col-12  mt-4 text-center">
+      <label for="campus_name" class="label">Campus Name </label>
+      <input class="controls" type="text" id="campus_name" name="campus_name" placeholder="CAMPUS NAME" />
+    </div>
+
+    <!------------ END CAMPUES SECTION -------->
+
+    <!----------- ROLE INPUT -------------------->
+    <div class="col-12  mt-4 text-center">
+      <label class="label" for="user_role">User Role </label>
+      <input class="controls" type=" text" id="user_role" name="user_role" placeholder="USER ROLE" />
+    </div>
+
+    <!-----------  ID INPUT --------------------->
+    <div class="col-12  mt-4 text-center">
+      <label for="user_id" class="label">User ID </label>
+      <input class="controls" type="text" id="user_id" name="user_id" placeholder="USER ID" />
+    </div>
+
+    <!------------ EMAIL INPUT ------------------>
+    <div class="col-12  mt-4 text-center">
+      <label for="user_email" class="label">User Email </label>
+      <input class="controls" type="text" id="user_email" name="user_email" placeholder="USER EMAIL" />
+    </div>
+
+    <!------------ PASSWORD INPUT ------------------>
+    <div class="col-12  mt-4 text-center">
+      <label for="user_password" class="label">User Password </label>
+      <input class="controls" type="password" id="user_password" name="user_password" placeholder="USER PASSWORD" />
+    </div>
+
+    <!------------ CONFIRM PASSWORD INPUT -------->
+    <div class="col-12  mt-4 text-center">
+      <label for="password2" class="label">Confirm Password </label>
+      <input class="controls" type="password" id="password2" name="password2" placeholder="CONFIRM PASSWORD" />
+    </div>
+
+    <!------------ TELEPHONE INPUT -------->
+    <div class="col-12  mt-4 text-center">
+      <label for="user_telephone" class="label">User Telephone </label>
+      <input class="controls" type="text" id="user_telephone" name="user_telephone" placeholder="USER TELEPHONE" />
+    </div>
+
+    <!------------ END USER SECTION -------->
+    <div class="col-12  mt-4 text-center">
+      <input class="button" type="submit" value="SUBMIT">
+    </div>
+  </form>
+</div>
+{% endblock %}
