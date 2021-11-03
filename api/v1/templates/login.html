@@ -2,20 +2,30 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-    <div class="container" style="margin: 100px" align="center">
-        <h1 style="margin:50px">ACCOUNT LOGIN</h1>
-        <form method="POST">
-            <label for="email" class="form-label">Email Adress</label>
+<div class="container">
+    <div class="col-12 text-center mt-5">
+        <h1 style="margin:50px; background: black; color:white;">ACCOUNT LOGIN</h1>
+    </div>
+    <form method="POST">
+        <div class="col-12 text-center mt-5">
+            <label for="email" class="form-label fs-2">Email Adress</label>
             <div class="mb-3">
                 <input type="email" class="col-form-label" id="email" name="email" placeholder="Enter email">
             </div>
-            <label for="password" class="form-label">Password</label>
+        </div>
+        <div class="col-12 text-center mt-5">
+            <label for="password" class="form-label fs-2">Password</label>
             <div class="form-group">
 
-                <input type="password" class="col-form-label" id="password" name="password" placeholder="Enter password">
+                <input type="password" class="col-form-label" id="password" name="password"
+                    placeholder="Enter password">
             </div>
-            <br />
+        </div>
+        <div class="col-12 text-center mt-5">
             <input class="btn btn-dark" type="submit" value="LOGIN">
-        </form>
-    </div>
+        </div>
+    </form>
+</div>
+
+</div>
 {% endblock %}
